@@ -20,11 +20,10 @@ class HomeViewModel : BaseViewModel() {
 
 
     fun loadData() {
-        viewModelScope.launch {
-            _uiState.value = NetworkResult.Loading
-
-            _uiState.value = repository.loadData()
+        launchWithState(_uiState) {
+            repository.loadData()
         }
     }
+
 }
 
